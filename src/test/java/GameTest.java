@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.exceptions.NotRegisteredException;
 
+import java.util.HashMap;
+
 public class GameTest {
 
     Player player1 = new Player(1, "Оля", 15);
@@ -14,8 +16,8 @@ public class GameTest {
 
     @Test
     public void firstPlayerWon() {
-        game.register(player1);
-        game.register(player2);
+        game.register("Оля", player1);
+        game.register("Петя", player2);
 
         int expected = 1;
         int actual = game.round("Петя", "Оля");
@@ -25,8 +27,8 @@ public class GameTest {
 
     @Test
     public void secondPlayerWon() {
-        game.register(player1);
-        game.register(player2);
+        game.register("Оля", player1);
+        game.register("Петя", player2);
 
         int expected = 2;
         int actual = game.round("Оля", "Петя");
@@ -36,8 +38,8 @@ public class GameTest {
 
     @Test
     public void playersWereEqual() {
-        game.register(player3);
-        game.register(player5);
+        game.register("Игорь", player3);
+        game.register("Олег", player5);
 
         int expected = 0;
         int actual = game.round("Игорь", "Олег");
@@ -47,8 +49,8 @@ public class GameTest {
 
     @Test
     public void firstPlayerNotRegistered() {
-        game.register(player1);
-        game.register(player2);
+        game.register("Оля", player1);
+        game.register("Петя", player2);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round("Оля", "Игорь");
@@ -57,8 +59,8 @@ public class GameTest {
 
     @Test
     public void secondPlayerNotRegistered() {
-        game.register(player1);
-        game.register(player2);
+        game.register("Оля", player1);
+        game.register("Петя", player2);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round("Петя", "Настя");
@@ -67,8 +69,8 @@ public class GameTest {
 
     @Test
     public void bothPlayersNotRegistered() {
-        game.register(player4);
-        game.register(player5);
+        game.register("Настя", player4);
+        game.register("Олег", player5);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round("Игорь", "Петя");
