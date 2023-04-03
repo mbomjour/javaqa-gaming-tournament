@@ -15,6 +15,16 @@ public class GameTest {
     Game game = new Game();
 
     @Test
+    public void findInfoByName() {
+        game.register("Настя", player4);
+
+        Player expected = player4;
+        Player actual = game.findInfo("Настя");
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void firstPlayerWon() {
         game.register("Оля", player1);
         game.register("Петя", player2);

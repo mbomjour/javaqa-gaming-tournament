@@ -12,6 +12,10 @@ public class Game {
         players.put(name, player);
     }
 
+    public Player findInfo (String key) {
+        return players.get(key);
+    }
+
     public int round(String name1, String name2) {
         Player player1 = null;
         Player player2 = null;
