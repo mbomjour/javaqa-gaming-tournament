@@ -1,25 +1,30 @@
 import ru.netology.exceptions.NotRegisteredException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game {
 
-    List<Player> players = new ArrayList<>();
+    HashMap<String, Player> players = new HashMap<>();
 
-    public void register(Player player) {
-        players.add(player);
+    public void register(String name, Player player) {
+        players.put(name, player);
+    }
+
+    public Player findInfo (String key) {
+        return players.get(key);
     }
 
     public int round(String name1, String name2) {
         Player player1 = null;
         Player player2 = null;
-        for (Player player : players) {
-            if (player.getName().equals(name1)) {
-                player1 = player;
+        for (String key : players.keySet()) {
+            if (players.get(key).equals(players.get(name1))) {
+                player1 = players.get(key);
             }
-            if (player.getName().equals(name2)) {
-                player2 = player;
+            if (players.get(key).equals(players.get(name2))) {
+                player2 = players.get(key);
             }
         }
         if (player1 == null) {
